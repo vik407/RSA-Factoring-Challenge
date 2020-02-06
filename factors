@@ -1,0 +1,21 @@
+#!/usr/bin/ruby
+linenum = 0
+fileopen = ARGV.first
+text = File.open(fileopen).read
+text.gsub!(/\r\n?/, "\n")
+
+text.each_line do |line|
+	fact = line.to_i
+	if fact % 2 == 0
+		puts "#{fact}=#{fact / 2}*2"
+	else
+		# rango desde 3 step de fact / 2 hasta que fact vuelva a ser modulo de 2
+		(3..fact).step(fact / 2).each do |findModulo|
+			puts "#{fact} - #{findModulo} -> bad"
+			if fact % findModulo == 0
+				puts "#{fact}=#{findModulo}*#{fact / findModulo} -> good"
+				break
+			end
+		end
+	end
+end
