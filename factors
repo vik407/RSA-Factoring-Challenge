@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
-require 'prime'
 
 linenum = 0
+sq = 0
 fileopen = ARGV.first
 text = File.open(fileopen).read
 text.gsub!(/\r\n?/, "\n")
@@ -11,7 +11,11 @@ text.each_line do |line|
 	if fact % 2 == 0
 		puts "#{fact}=#{fact / 2}*2"
 	else
-		(Prime.each(Math.sqrt(fact).round)).each do |findModulo|
+		sq = Math.sqrt(fact).round
+		if sq % 2 == 0
+			sq += 1
+		end
+		(3..(sq + 1)).each do |findModulo|
 			if fact % findModulo == 0
 				puts "#{fact}=#{fact / findModulo}*#{findModulo}"
 				break
