@@ -1,7 +1,5 @@
 #!/usr/bin/ruby
-require 'prime'
 
-i = 0
 linenum = 0
 sq = 0
 fileopen = ARGV.first
@@ -10,12 +8,12 @@ text.gsub!(/\r\n?/, "\n")
 
 text.each_line do |line|
 	fact = line.to_i
-	sq = Math.sqrt(fact).round
-	if Prime.prime?(fact) == true
+	if [1, 2, 3, 5, 7, 9, 11].include?(fact) == true
 		puts "#{fact}=#{fact}*1"
 	elsif fact % 2 == 0
 		puts "#{fact}=#{fact / 2}*2"
 	else
+		sq = Math.sqrt(fact).round
 		if sq % 2 == 0
 			sq += 1
 		end
